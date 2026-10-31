@@ -1,0 +1,9 @@
+#!/data/data/com.termux/files/usr/bin/sh
+# Start termux-services + key services at device boot (requires Termux:Boot app)
+export SVDIR=/data/data/com.termux/files/usr/var/service
+export LOGDIR=/data/data/com.termux/files/usr/var/log
+termux-wake-lock
+service-daemon start >/dev/null 2>&1 &
+sleep 5
+sv up tailscaled
+sv up sshd
